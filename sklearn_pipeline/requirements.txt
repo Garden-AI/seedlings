@@ -1,0 +1,2 @@
+## Please specify all pipeline dependencies here
+garden-ai==0.4.1
