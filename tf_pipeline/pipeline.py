@@ -22,35 +22,22 @@ Brief notes on steps (see docs for more detail):
           composing (no checking at runtime)
 """
 
-# example step using the decorator:
-@step
-def preprocessing_step(input_data: object) -> object:
-    """ """
-    # TODO
-    pass
-
-
-@step()
-def another_step(data: object) -> object:
-    # TODO
-    pass
-
 
 @step
 def run_inference(
-    input_arg: object,
-    model=Model("YOUR MODEL's NAME HERE"),
+    input_tensor: object,
+    model=Model("willengler@uchicago.edu-keras-example/1"),
 ) -> object:
-    pass
+    import tensorflow as tf
+    predictions = model.predict(input_tensor)
+    return tf.math.argmax(predictions, 1)
 
 # the step functions will be composed in order by the pipeline:
 ALL_STEPS = (
-    preprocessing_step,
-    another_step,
     run_inference,
 )
 
-REQUIREMENTS_FILE = None  # to specify additional dependencies, replace `None`
+REQUIREMENTS_FILE = "/Users/will/Sandbox/seedlings/tf_pipeline/requirements.txt"  # to specify additional dependencies, replace `None`
                           # with an "/absolute/path/to/requirements.txt"
 
 ################################### PIPELINE ####################################

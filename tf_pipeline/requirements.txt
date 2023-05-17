@@ -1,1 +1,3 @@
 ## Please specify all pipeline dependencies here
+tensorflow==2.12.0
+garden-ai==0.4.1
