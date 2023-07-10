@@ -25,7 +25,7 @@ Brief notes on steps (see docs for more detail):
 @step
 def run_inference(
     input_tensor: object,
-    model=Model("willengler@uchicago.edu-pytorch-example/1"),
+    model=Model("willengler@uchicago.edu/torch-test"),
 ) -> object:
     return model.predict(input_tensor)
 
@@ -33,14 +33,12 @@ def run_inference(
 ALL_STEPS = (
     run_inference,
 )
-
-REQUIREMENTS_FILE = "/Users/will/Sandbox/seedlings/torch_pipeline/requirements.txt"  # to specify additional dependencies, replace `None`
-                          # with an "/absolute/path/to/requirements.txt"
+REQUIREMENTS_FILE = "/Users/will/Sandbox/seedlings/flavor_garden/torch_linear_function_predict/requirements.txt"
 
 ################################### PIPELINE ####################################
 
-torch_pipeline: Pipeline = client.create_pipeline(
-    title="Pytorch Example",
+torch_linear_function_predict: Pipeline = client.create_pipeline(
+    title="Predict f(x) = 2x - 1",
     steps=ALL_STEPS,
     requirements_file=REQUIREMENTS_FILE,
     authors=['Will Engler'],
@@ -49,5 +47,5 @@ torch_pipeline: Pipeline = client.create_pipeline(
     version="0.0.1",
     year=2023,
     tags=[],
-    uuid="aa2273f1-4a04-4807-81e8-cbd928824e92",  # WARNING: DO NOT EDIT UUID
+    doi="10.23677/4rfg-wn07",  # WARNING: DO NOT EDIT DOI
 )
