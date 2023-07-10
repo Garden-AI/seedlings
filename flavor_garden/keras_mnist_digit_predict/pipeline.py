@@ -25,29 +25,31 @@ Brief notes on steps (see docs for more detail):
 @step
 def run_inference(
     input_tensor: object,
-    model=Model("willengler@uchicago.edu-pytorch-example/1"),
+    model=Model("willengler@uchicago.edu/keras-mnist-digit-predict"),
 ) -> object:
-    return model.predict(input_tensor)
+    import tensorflow as tf
+    predictions = model.predict(input_tensor)
+    return tf.math.argmax(predictions, 1)
 
 # the step functions will be composed in order by the pipeline:
 ALL_STEPS = (
     run_inference,
 )
 
-REQUIREMENTS_FILE = "/Users/will/Sandbox/seedlings/torch_pipeline/requirements.txt"  # to specify additional dependencies, replace `None`
-                          # with an "/absolute/path/to/requirements.txt"
-
 ################################### PIPELINE ####################################
 
-torch_pipeline: Pipeline = client.create_pipeline(
-    title="Pytorch Example",
+keras_mnist_digit_predict: Pipeline = client.create_pipeline(
+    title="MNIST Digit Prediction in Garden",
     steps=ALL_STEPS,
-    requirements_file=REQUIREMENTS_FILE,
+    pip_dependencies=[
+        "tensorflow==2.13.0",
+        "mlflow-skinny==2.4.1"
+    ],
     authors=['Will Engler'],
     contributors=[],
     description="",
     version="0.0.1",
     year=2023,
     tags=[],
-    uuid="aa2273f1-4a04-4807-81e8-cbd928824e92",  # WARNING: DO NOT EDIT UUID
+    doi="10.23677/twn4-sw80",  # WARNING: DO NOT EDIT DOI
 )

@@ -22,35 +22,29 @@ Brief notes on steps (see docs for more detail):
           composing (no checking at runtime)
 """
 
-
 @step
 def run_inference(
     input_tensor: object,
-    model=Model("willengler@uchicago.edu-keras-example/1"),
+    model=Model("willengler@uchicago.edu/torch-test"),
 ) -> object:
-    import tensorflow as tf
-    predictions = model.predict(input_tensor)
-    return tf.math.argmax(predictions, 1)
+    return model.predict(input_tensor)
 
 # the step functions will be composed in order by the pipeline:
 ALL_STEPS = (
     run_inference,
 )
 
-REQUIREMENTS_FILE = "/Users/will/Sandbox/seedlings/tf_pipeline/requirements.txt"  # to specify additional dependencies, replace `None`
-                          # with an "/absolute/path/to/requirements.txt"
-
 ################################### PIPELINE ####################################
 
-tf_pipeline: Pipeline = client.create_pipeline(
-    title="Tensorflow Example",
+torch_linear_function_predict: Pipeline = client.create_pipeline(
+    title="Predict f(x) = 2x - 1",
     steps=ALL_STEPS,
-    requirements_file=REQUIREMENTS_FILE,
+    pip_dependencies=['torch==2.0.1'],
     authors=['Will Engler'],
     contributors=[],
     description="",
     version="0.0.1",
     year=2023,
     tags=[],
-    uuid="491fdca4-0cf4-4eb1-a530-74ce53de0404",  # WARNING: DO NOT EDIT UUID
+    doi="10.23677/4rfg-wn07",  # WARNING: DO NOT EDIT DOI
 )
