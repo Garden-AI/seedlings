@@ -36,14 +36,15 @@ ALL_STEPS = (
     run_inference,
 )
 
-REQUIREMENTS_FILE = "/Users/will/Sandbox/seedlings/flavor_garden/keras_mnist_digit_predict/requirements.txt"
-
 ################################### PIPELINE ####################################
 
 keras_mnist_digit_predict: Pipeline = client.create_pipeline(
     title="MNIST Digit Prediction in Garden",
     steps=ALL_STEPS,
-    requirements_file=REQUIREMENTS_FILE,
+    pip_dependencies=[
+        "tensorflow==2.13.0",
+        "mlflow-skinny==2.4.1"
+    ],
     authors=['Will Engler'],
     contributors=[],
     description="",

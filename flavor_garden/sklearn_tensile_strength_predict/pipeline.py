@@ -77,14 +77,12 @@ ALL_STEPS = (
     run_inference,
 )
 
-REQUIREMENTS_FILE = "/Users/will/Sandbox/seedlings/flavor_garden/sklearn_tensile_strength_predict/requirements.txt"  # to specify additional dependencies, replace `None`
-
 ################################### PIPELINE ####################################
 
 sklearn_tensile_strength_predict: Pipeline = client.create_pipeline(
     title="Steel Alloy Tensile Strength Prediction",
     steps=ALL_STEPS,
-    requirements_file=REQUIREMENTS_FILE,
+    pip_dependencies=["scikit-learn==1.2.2"],
     authors=['Will Engler'],
     contributors=[],
     description="Pipeline for predicting the tensile strength (in MPa) of different compositions of alloy steels",

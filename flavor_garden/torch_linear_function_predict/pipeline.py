@@ -33,14 +33,13 @@ def run_inference(
 ALL_STEPS = (
     run_inference,
 )
-REQUIREMENTS_FILE = "/Users/will/Sandbox/seedlings/flavor_garden/torch_linear_function_predict/requirements.txt"
 
 ################################### PIPELINE ####################################
 
 torch_linear_function_predict: Pipeline = client.create_pipeline(
     title="Predict f(x) = 2x - 1",
     steps=ALL_STEPS,
-    requirements_file=REQUIREMENTS_FILE,
+    pip_dependencies=['torch==2.0.1'],
     authors=['Will Engler'],
     contributors=[],
     description="",
