@@ -31,8 +31,8 @@ def preprocessing_step(composition_string: str) -> object:
     import pandas as pd
 
     atomic_weights = {
-        'Fe': 55.845, 'C': 12.011, 'Mn': 54.938045, 'Si': 28.0855, 'Cr': 51.9961, 
-        'Ni': 58.6934, 'Mo': 95.96, 'V': 50.9415, 'Nb': 92.90638, 'Co': 58.933195, 
+        'Fe': 55.845, 'C': 12.011, 'Mn': 54.938045, 'Si': 28.0855, 'Cr': 51.9961,
+        'Ni': 58.6934, 'Mo': 95.96, 'V': 50.9415, 'Nb': 92.90638, 'Co': 58.933195,
         'W': 183.84, 'Al': 26.9815386, 'Ti': 47.867, "N": 28.014
     }
     elements_to_show = ['c', 'mn', 'si', 'cr', 'ni', 'mo', 'v', 'n', 'nb', 'co', 'w', 'al', 'ti']
@@ -41,14 +41,14 @@ def preprocessing_step(composition_string: str) -> object:
     composition = re.findall(r'([A-Z][a-z]?)(\d+\.\d+)', composition_string)
     elements, fractions = zip(*composition)
     fractions = [float(f) for f in fractions]
-    
+
     # Calculate the weights
     weights = [f * atomic_weights[e] for e, f in zip(elements, fractions)]
     total_weight = sum(weights)
-    
+
     # Calculate weight percentages
     weight_percentages = [w / total_weight * 100 for w in weights]
-    
+
     lowercase_elements = [e.lower() for e in elements]
     missing_elements = []
     for e in elements_to_show:
@@ -56,8 +56,8 @@ def preprocessing_step(composition_string: str) -> object:
         missing_elements.append(e)
     lowercase_elements += missing_elements
     weight_percentages += [0.0] * len(missing_elements)
-    
-    
+
+
     # Create DataFrame
     df = pd.DataFrame([weight_percentages], columns=lowercase_elements)
     df = df.drop(["fe"], axis=1)
