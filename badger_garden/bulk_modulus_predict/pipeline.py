@@ -110,20 +110,20 @@ def run_inference(
                     preds.append(pred.predict(np.array(X_aslist[x]).reshape(1, -1))[0])
             if recal_params is not None:
                 yerr.append(recal_params['a'][0]*np.std(preds)+recal_params['b'][0])
-            else:            
+            else:
                 yerr.append(np.std(preds))
-    
+
     if model_name == 'GaussianProcessRegressor':
         y_pred_new, yerr = model.model.predict(input_df, return_std=True)
     else:
         y_pred_new = model.predict(input_df)
-    
+
     if len(yerr) > 0:
         pred_df = pd.DataFrame(y_pred_new, columns=['y_pred'])
         pred_df['y_err'] = yerr
     else:
         pred_df = pd.DataFrame(y_pred_new, columns=['y_pred'])
-    
+
     return pred_df
 
 # the step functions will be composed in order by the pipeline:
