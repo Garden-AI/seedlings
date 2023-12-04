@@ -1,0 +1,1 @@
+This is a first draft of an example Garden showing off the RPV model from Jacobs, R., Yamamoto, T., Odette, G. R., Morgan, D. "Predictions and Uncertainty Estimates of Reactor Pressure Vessel Steel Embrittlement Using Machine Learning", submitted (2023).: https://github.com/uw-cmg/RPV_model

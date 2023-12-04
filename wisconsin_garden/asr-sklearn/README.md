@@ -1,0 +1,1 @@
+This is a first draft of an example Garden showing off the ASR model from Jacobs, R., Liu, J., Abernathy, H., Morgan, D. "Machine Learning Design of Perovskite Catalytic Properties", submitted (2023).: https://github.com/uw-cmg/ASR_model
